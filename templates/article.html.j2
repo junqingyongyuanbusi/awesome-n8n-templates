@@ -1,0 +1,74 @@
+{% extends "base.html.j2" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<article class="article">
+  <h1>{{ article.title }}</h1>
+  {% if article.description %}
+  <p class="description">{{ article.description }}</p>
+  {% endif %}
+
+  <div class="meta">
+    {% if article.date %}<span class="date">{{ article.date }}</span>{% endif %}
+    {% if article.tags %}
+      <span class="tags">
+        {% for t in article.tags %}<span class="tag">#{{ t }}</span>{% endfor %}
+      </span>
+    {% endif %}
+  </div>
+
+  {% if hero_image %}
+  <figure class="hero">
+    <img src="{{ hero_image }}" alt="hero"/>
+    {% if article.cover_credit %}<figcaption>{{ article.cover_credit }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+
+  <section class="reviews">
+    <h2>用户评价</h2>
+    {% for r in reviews %}
+    <div class="review">
+      <div class="review-header">
+        <span class="author">{{ r.author }}</span>
+        {% if r.rating is not none %}<span class="rating">⭐ {{ '%.1f'| format(r.rating) }}</span>{% endif %}
+        {% if r.date %}<span class="rdate">{{ r.date }}</span>{% endif %}
+      </div>
+      <div class="content">{{ r.content | replace('\n', '<br/>') | safe }}</div>
+      {% if r.pros or r.cons %}
+      <div class="pros-cons">
+        {% if r.pros %}
+        <div class="pros"><strong>优点</strong>
+          <ul>{% for p in r.pros %}<li>{{ p }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+        {% if r.cons %}
+        <div class="cons"><strong>缺点</strong>
+          <ul>{% for c in r.cons %}<li>{{ c }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% if r.images %}
+      <div class="review-images">
+        {% for img in r.images %}
+          <img src="{{ img }}" alt="review image" />
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </section>
+
+  {% if gallery_images %}
+  <section class="gallery">
+    <h2>图集</h2>
+    <div class="grid">
+      {% for g in gallery_images %}
+        <img src="{{ g }}" alt="gallery image" />
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

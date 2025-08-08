@@ -1,0 +1,28 @@
+article:
+  title: 产品X 真实体验评测
+  slug: product-x-review
+  description: 对产品X的主观体验与客观表现的汇总
+  date: 2025-08-08
+  hero_image: hero.jpg
+  tags: [产品X, 评测]
+  cover_credit: 摄影：张三
+
+gallery_dir: gallery/product-x
+
+reviews:
+  - author: 张三
+    rating: 4.5
+    date: 2025-08-01
+    content: |
+      外观质感很好，边角打磨细腻。日常轻度使用续航两天没问题。
+      屏幕色彩讨喜但偏冷，扬声器音量略小。
+    pros: [做工精致, 电池续航长]
+    cons: [价格略高]
+    images: [detail1.jpg, detail2.jpg]
+  - author: 李四
+    rating: 4.0
+    date: 2025-08-02
+    content: 电池给力，音质中规中矩，充电速度满意。
+    pros: [续航, 便携]
+    cons: []
+    images: []

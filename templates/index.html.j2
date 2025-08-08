@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}
+
+{% block title %}文章索引{% endblock %}
+
+{% block content %}
+<h1>文章索引</h1>
+<ul class="index-list">
+  {% for a in articles %}
+  <li>
+    <a href="{{ a.slug }}.html">{{ a.title }}</a>
+    {% if a.date %}<span class="date">{{ a.date }}</span>{% endif %}
+    {% if a.description %}<div class="desc">{{ a.description }}</div>{% endif %}
+    {% if a.tags %}<div class="tags">{% for t in a.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</div>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
